@@ -7,11 +7,11 @@ exports.up = function(knex) {
         .notNullable()
         .unique();
       users.string('password', 128).notNullable();
-      users.string('department', 128).notNullable();
+      users.string('role', 128).notNullable();
     });
   };
   
-  exports.down = function(knex, Promise) {
-    return knex.schema.dropTableIfExists('users');
-  };
+exports.down = function(knex, Promise) {
+  return knex.schema.dropTableIfExists('users');
+};
   
