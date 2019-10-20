@@ -4,11 +4,12 @@ module.exports = {
     add,
     find,
     findBy,
-    findById
+    findById,
+    update
 }
 
 function find() {
-    return db('tickets').where({ assigned: false, resolved: false });
+    return db('tickets');
 }
 
 function findBy(filter) {
@@ -19,6 +20,13 @@ async function add(ticket) {
     const [id] = await db('tickets').insert(ticket);
   
     return findById(id);
+}
+
+async function update(id, changes) {
+    return await db('tickets')
+        .where({ id })
+        .update(changes)
+        .then(() => findById(id));
 }
 
 function findById(id) {
