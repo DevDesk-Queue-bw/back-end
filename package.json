@@ -47,8 +47,8 @@
     "version": "1.0.0",
     "description": "API for Devdesk Queue",
     "title": "Devdesk Queue API Docs",
-    "url": "https://devdesk-queue-bw.herokuapp.com/",
-    "sampleUrl": "https://devdesk-queue-bw.herokuapp.com/",
+    "url": "https://devdesk-queue-bw.herokuapp.com",
+    "sampleUrl": "https://devdesk-queue-bw.herokuapp.com",
     "template": {
       "forceLanguage": "en"
     }
