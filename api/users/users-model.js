@@ -8,8 +8,10 @@ module.exports = {
   findAssignedTickets,
   findBy,
   findById,
+  findStudentTicketById,
   findStudentTickets,
-  removeAssignedTicket
+  removeAssignedTicket,
+  removeStudentTicket
 };
 
 async function assignTicket(helper_id, ticket_id) {
@@ -69,8 +71,20 @@ function findById(id) {
     .first();
 }
 
+function findStudentTicketById(id) {
+  return db('student_tickets')
+    .where({ id })
+    .first();
+}
+
 async function removeAssignedTicket(ticket_id) {
   return await db('assigned_tickets')
+    .where({ ticket_id })
+    .del();
+}
+
+async function removeStudentTicket(ticket_id) {
+  return await db('student_tickets')
     .where({ ticket_id })
     .del();
 }

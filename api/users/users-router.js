@@ -63,7 +63,7 @@ router.put('/tickets/:id/resolved', (req, res) => {
     
         Users.findAssignedTicketById(id)
             .then(ticket => {
-                if (ticket.length) {
+                if (ticket) {
                     if (ticket.helper_id === req.user.id) {
                         // Sets ticket to resolved along with the included ticket solution
                         Tickets.update(id, { solution, resolved: true })
@@ -105,5 +105,34 @@ router.put('/tickets/:id/reassign', (req, res) => {
         })
     : res.status(400).json({ message: "Ticket updating restricted to helpers." });
 });
+
+router.delete('/tickets/:id', (req, res) => {
+    const { id } = req.params;
+
+    req.user.role === 'student' ?
+
+    Users.findStudentTicketById(id)
+        .then(ticket => {
+            if (ticket) {
+                // Deletes student ticket entry as well as the ticket entry in database
+                if (ticket.student_id === req.user.id) {
+                    Users.removeStudentTicket(id)
+                        .then(() => {
+                            Tickets.remove(id);
+                            res.status(200).json({ message: "Ticket deleted successfully." })
+                        })
+                        .catch(err => {
+                            console.log(err);
+                            res.status(500).json({ message: "There was an error deleting the ticket." })
+                        })
+                } else res.status(400).json({ message: "Only the student that submitted the ticket may delete it." })
+            } else res.status(404).json({ message: "Ticket could not be found." })
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ message: "There was an error deleting the ticket." });
+        })
+    : res.status(400).json({ message: "Deleting tickets is restricted to students." })
+})
 
 module.exports = router;

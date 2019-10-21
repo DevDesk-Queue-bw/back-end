@@ -6,6 +6,7 @@ module.exports = {
     find,
     findBy,
     findById,
+    remove,
     update
 }
 
@@ -27,6 +28,12 @@ async function addTicketToStudent(student_id, ticket_id) {
     return await db('student_tickets')
         .insert({ student_id, ticket_id}, 'id')
         .then(() => findById(ticket_id));
+}
+
+async function remove(id) {
+    return await db('tickets')
+        .where({ id })
+        .del();
 }
 
 async function update(id, changes) {
