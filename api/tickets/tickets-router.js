@@ -20,38 +20,19 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     const { title, description, tried, category } = req.body;
-    if (!title || !description || !tried || !category) {
-        res.status(400).json({ message: "Missing ticket parameters." });
-    } else Tickets.add(req.body)
-        .then(ticket => {
-            res.status(201).json(ticket);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({ message: "Error adding the ticket." })
-        })
-});
 
-router.put('/:id', (req, res) => {
-    const { id } = req.params;
-    const changes = req.body;
-
-    req.user.role === 'helper' ?
-
-    Tickets.findById(id)
-        .then(ticket => {
-            if (ticket) {
-                Tickets.update(id, changes)
-                    .then(updatedTicket => {
-                        res.status(200).json(updatedTicket)
-                    });
-            } else res.status(404).json({ message: "Ticket not found." });
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({ message: "Error updating the ticket." })
-        })
-    : res.status(400).json({ message: "Ticket updating restricted to helpers." });
+    if (req.user.role === 'student') {
+        if (!title || !description || !tried || !category) {
+            res.status(400).json({ message: "Missing ticket parameters." });
+        } else Tickets.add(req.body)
+            .then(ticket => {
+                res.status(201).json(ticket);
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).json({ message: "Error adding the ticket." })
+            })
+    } else res.status(400).json({ message: "Adding tickets restricted to students." })
 });
 
 module.exports = router;

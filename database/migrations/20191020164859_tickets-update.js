@@ -9,6 +9,7 @@ exports.up = function(knex) {
         tbl.string('description', 512);
         tbl.string('tried', 512);
         tbl.string('category', 128);
+        tbl.string('solution', 1024);
         tbl
             .boolean('assigned')
             .defaultTo(false);
