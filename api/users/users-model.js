@@ -7,7 +7,8 @@ module.exports = {
   findAssignedTicketById,
   findAssignedTickets,
   findBy,
-  findById
+  findById,
+  removeAssignedTicket
 };
 
 async function assignTicket(helper_id, ticket_id) {
@@ -52,4 +53,10 @@ function findById(id) {
     .select('id', 'username', 'role')
     .where({ id })
     .first();
+}
+
+async function removeAssignedTicket(ticket_id) {
+  return await db('assigned_tickets')
+    .where({ ticket_id })
+    .del();
 }

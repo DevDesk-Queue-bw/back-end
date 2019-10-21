@@ -30,15 +30,15 @@ router.post('/tickets/:id', (req, res) => {
     : res.status(400).json({ message: "Ticket assignment restricted to helpers only." });
 });
 
-router.put('tickets/:id/resolved', (req, res) => {
+router.put('/tickets/:id/resolved', (req, res) => {
     const { id } = req.params;
     const { solution } = req.body;
 
     req.user.role === 'helper' ?
 
-    Tickets.findById(id)
+    Users.findAssignedTicketById(id)
         .then(ticket => {
-            if (ticket) {
+            if (ticket.length) {
                 // Sets ticket to resolved along with the included ticket solution
                 Tickets.update(id, { solution, resolved: true })
                     .then(updatedTicket => {
@@ -52,5 +52,30 @@ router.put('tickets/:id/resolved', (req, res) => {
         })
     : res.status(400).json({ message: "Ticket updating restricted to helpers." });
 });
+
+router.put('/tickets/:id/reassign', (req, res) => {
+    const { id } = req.params;
+
+    req.user.role === 'helper' ?
+
+    Tickets.findById(id)
+        .then(ticket => {
+            if (ticket) {
+                // Sets ticket assignment to false and deletes assigned ticket entry
+                Tickets.update(id, { assigned: false })
+                    .then(updatedTicket => {
+                        Users.removeAssignedTicket(id)
+                            .then(() => {
+                                res.status(200).json(updatedTicket)
+                            });
+                    });
+            } else res.status(404).json({ message: "Ticket not found." });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ message: "Error updating the ticket." })
+        })
+    : res.status(400).json({ message: "Ticket updating restricted to helpers." });
+})
 
 module.exports = router;
