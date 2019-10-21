@@ -2,13 +2,53 @@ const router = require('express').Router();
 
 const Tickets = require('./tickets-model.js');
 
+/**
+ *
+ * @api {get} /tickets List all tickets
+ * @apiName GetTickets
+ * @apiGroup Tickets
+ * @apiVersion 1.0.0
+ *
+ * @apiSuccess (200) {Object} tickets Ticket list
+ * @apiSuccess (200) {Number} tickets.id Ticket ID
+ * @apiSuccess (200) {String} tickets.title Ticket title
+ * @apiSuccess (200) {String} tickets.description Ticket description
+ * @apiSuccess (200) {String} tickets.tried Ticket tried
+ * @apiSuccess (200) {String} tickets.category Ticket category
+ * @apiSuccess (200) {String} tickets.solution Ticket solution
+ * @apiSuccess (200) {Boolean} tickets.assigned Is ticket assigned? Defaults to false
+ * @apiSuccess (200) {Boolean} tickets.resolved Is ticket resolved? Defaults to
+ *
+ *
+ * @apiSuccessExample {json} Success-Response:
+ *  HTTP/1.1 200 OK
+ *  [
+ *    {
+ *      "id": 1,
+ *      "title": "How do I into Node?",
+ *      "description": "No seriously I don't get it.",
+ *      "tried": "Many things."
+ *      "solution": null,
+ *      "assigned": false,
+ *      "resolved": false
+ *    },
+ *    {
+ *      . . .
+ *    }
+ *  ]
+ *
+ * @apiErrorExample {json} List error
+ *  HTTP/1.1 500 Internal Server Error
+ *
+ */
+
 router.get('/', (req, res) => {
     Tickets.find()
         .then(tickets => {
             res.status(200).json(tickets)
         })
         .catch(err => {
-            res.status(400).json(err)
+            res.status(500).json(err)
         });
 });
 
@@ -18,7 +58,7 @@ router.get('/open', (req, res) => {
             res.status(200).json(tickets)
         })
         .catch(err => {
-            res.status(400).json(err)
+            res.status(500).json(err)
         });
 });
 
@@ -28,7 +68,7 @@ router.get('/closed', (req, res) => {
             res.status(200).json(tickets)
         })
         .catch(err => {
-            res.status(400).json(err)
+            res.status(500).json(err)
         });
 })
 
