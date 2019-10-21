@@ -94,7 +94,7 @@ define({ "api": [
     "groupTitle": "Auth",
     "sampleRequest": [
       {
-        "url": "https://devdesk-queue-bw.herokuapp.com//auth/login"
+        "url": "https://devdesk-queue-bw.herokuapp.com/auth/login"
       }
     ]
   },
@@ -201,7 +201,7 @@ define({ "api": [
     "groupTitle": "Auth",
     "sampleRequest": [
       {
-        "url": "https://devdesk-queue-bw.herokuapp.com//auth/register"
+        "url": "https://devdesk-queue-bw.herokuapp.com/auth/register"
       }
     ]
   },
@@ -332,7 +332,7 @@ define({ "api": [
     "groupTitle": "Tickets",
     "sampleRequest": [
       {
-        "url": "https://devdesk-queue-bw.herokuapp.com//tickets"
+        "url": "https://devdesk-queue-bw.herokuapp.com/tickets"
       }
     ]
   },
@@ -432,7 +432,7 @@ define({ "api": [
     "groupTitle": "Tickets",
     "sampleRequest": [
       {
-        "url": "https://devdesk-queue-bw.herokuapp.com//tickets/closed"
+        "url": "https://devdesk-queue-bw.herokuapp.com/tickets/closed"
       }
     ]
   },
@@ -532,7 +532,7 @@ define({ "api": [
     "groupTitle": "Tickets",
     "sampleRequest": [
       {
-        "url": "https://devdesk-queue-bw.herokuapp.com//tickets/open"
+        "url": "https://devdesk-queue-bw.herokuapp.com/tickets/open"
       }
     ]
   },
@@ -632,7 +632,7 @@ define({ "api": [
     "groupTitle": "Tickets",
     "sampleRequest": [
       {
-        "url": "https://devdesk-queue-bw.herokuapp.com//tickets"
+        "url": "https://devdesk-queue-bw.herokuapp.com/tickets"
       }
     ]
   },
@@ -743,7 +743,7 @@ define({ "api": [
     "groupTitle": "Users",
     "sampleRequest": [
       {
-        "url": "https://devdesk-queue-bw.herokuapp.com//users/tickets/:id/assign"
+        "url": "https://devdesk-queue-bw.herokuapp.com/users/tickets/:id/assign"
       }
     ]
   },
@@ -837,7 +837,7 @@ define({ "api": [
     "groupTitle": "Users",
     "sampleRequest": [
       {
-        "url": "https://devdesk-queue-bw.herokuapp.com//users/tickets/:id"
+        "url": "https://devdesk-queue-bw.herokuapp.com/users/tickets/:id"
       }
     ]
   },
@@ -935,7 +935,7 @@ define({ "api": [
     "groupTitle": "Users",
     "sampleRequest": [
       {
-        "url": "https://devdesk-queue-bw.herokuapp.com//users/tickets"
+        "url": "https://devdesk-queue-bw.herokuapp.com/users/tickets"
       }
     ]
   },
@@ -1043,7 +1043,7 @@ define({ "api": [
     "groupTitle": "Users",
     "sampleRequest": [
       {
-        "url": "https://devdesk-queue-bw.herokuapp.com//users/tickets/:id/reassign"
+        "url": "https://devdesk-queue-bw.herokuapp.com/users/tickets/:id/reassign"
       }
     ]
   },
@@ -1183,7 +1183,7 @@ define({ "api": [
     "groupTitle": "Users",
     "sampleRequest": [
       {
-        "url": "https://devdesk-queue-bw.herokuapp.com//users/tickets/:id/resolve"
+        "url": "https://devdesk-queue-bw.herokuapp.com/users/tickets/:id/resolve"
       }
     ]
   }
