@@ -16,8 +16,8 @@ module.exports = {
 
 async function assignTicket(helper_id, ticket_id) {
   return await db('assigned_tickets')
-      .insert({ helper_id, ticket_id }, 'id')
-      .then(() => findAssignedTickets(helper_id));
+    .insert({ helper_id, ticket_id }, 'id')
+    .then(() => findAssignedTickets(helper_id));
 }
 
 function find() {
@@ -25,7 +25,10 @@ function find() {
 }
 
 async function findAssignedTicketById(ticket_id) {
-  return await db('assigned_tickets').where({ ticket_id });
+  return await db('assigned_tickets')
+    .select('id', 'helper_id', 'ticket_id')
+    .where({ ticket_id })
+    .first();
 }
 
 async function findAssignedTickets(id) {
