@@ -18,6 +18,7 @@ server.use('/auth', authRouter);
 server.use('/users', restricted, usersRouter);
 server.use('/tickets', restricted, ticketsRouter);
 
+// API documentation accessible at /docs
 server.use('/docs', express.static(apiDoc));
 
 module.exports = server;
