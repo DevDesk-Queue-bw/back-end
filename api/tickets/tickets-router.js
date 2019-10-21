@@ -5,10 +5,6 @@ const Tickets = require('./tickets-model.js');
 router.get('/', (req, res) => {
     Tickets.find()
         .then(tickets => {
-            tickets.map(ticket => {
-                ticket.assigned === 0 ? ticket.assigned = false : ticket.assigned = true;
-                ticket.resolved === 0 ? ticket.resolved = false : ticket.resolved = true;
-            });
             res.status(200).json(tickets)
         })
         .catch(err => {
@@ -17,12 +13,8 @@ router.get('/', (req, res) => {
 });
 
 router.get('/open', (req, res) => {
-    Tickets.findBy({ assigned: 0 })
+    Tickets.findBy({ assigned: false })
         .then(tickets => {
-            tickets.map(ticket => {
-                ticket.assigned === 0 ? ticket.assigned = false : ticket.assigned = true;
-                ticket.resolved === 0 ? ticket.resolved = false : ticket.resolved = true;
-            });
             res.status(200).json(tickets)
         })
         .catch(err => {
@@ -31,12 +23,8 @@ router.get('/open', (req, res) => {
 });
 
 router.get('/closed', (req, res) => {
-    Tickets.findBy({ resolved: 1 })
+    Tickets.findBy({ resolved: true })
         .then(tickets => {
-            tickets.map(ticket => {
-                ticket.assigned === 0 ? ticket.assigned = false : ticket.assigned = true;
-                ticket.resolved === 0 ? ticket.resolved = false : ticket.resolved = true;
-            });
             res.status(200).json(tickets)
         })
         .catch(err => {
