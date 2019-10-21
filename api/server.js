@@ -1,6 +1,7 @@
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
+const path = require('path');
 const apiDoc = path.join(__dirname, '../apidoc');
 
 const authRouter = require('./auth/auth-router.js');
