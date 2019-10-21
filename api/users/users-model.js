@@ -8,6 +8,7 @@ module.exports = {
   findAssignedTickets,
   findBy,
   findById,
+  findStudentTickets,
   removeAssignedTicket
 };
 
@@ -40,6 +41,19 @@ async function findAssignedTickets(id) {
 
 function findBy(filter) {
   return db('users').where(filter);
+}
+
+async function findStudentTickets(id) {
+  return await db('student_tickets as st')
+    .where('student_id', id)
+    .join('tickets as t', 'st.ticket_id', 't.id')
+    .select(
+      'st.ticket_id',
+      't.title',
+      't.description',
+      't.tried',
+      't.category'
+    );
 }
 
 async function add(user) {

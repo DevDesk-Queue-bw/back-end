@@ -30,6 +30,30 @@ router.post('/tickets/:id', (req, res) => {
     : res.status(400).json({ message: "Ticket assignment restricted to helpers only." });
 });
 
+router.get('/tickets', (req, res) => {
+    const user_id = req.user.id;
+
+    if (req.user.role === 'student') {
+        Users.findStudentTickets(user_id)
+            .then(tickets => {
+                res.status(200).json(tickets)
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).json({ message: "Error retrieving tickets" })
+            })
+    } else if (req.user.role === 'helper') {
+        Users.findAssignedTickets(user_id)
+            .then(tickets => {
+                res.status(200).json(tickets)
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).json({ message: "Error retrieving tickets" })
+            })
+    } else res.status(400).json({ message: "User role not specified" });
+})
+
 router.put('/tickets/:id/resolved', (req, res) => {
     const { id } = req.params;
     const { solution } = req.body;
