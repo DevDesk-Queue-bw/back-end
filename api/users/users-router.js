@@ -3,7 +3,7 @@ const router = require('express').Router();
 const Tickets = require('../tickets/tickets-model.js');
 const Users = require('./users-model.js');
 
-router.post('/tickets/:id', (req, res) => {
+router.post('/tickets/:id/assign', (req, res) => {
     const helper_id = req.user.id;
     const { id } = req.params;
 
@@ -64,11 +64,13 @@ router.put('/tickets/:id/resolved', (req, res) => {
         Users.findAssignedTicketById(id)
             .then(ticket => {
                 if (ticket.length) {
-                    // Sets ticket to resolved along with the included ticket solution
-                    Tickets.update(id, { solution, resolved: true })
-                        .then(updatedTicket => {
-                            res.status(200).json(updatedTicket)
-                        });
+                    if (ticket.helper_id === req.user.id) {
+                        // Sets ticket to resolved along with the included ticket solution
+                        Tickets.update(id, { solution, resolved: true })
+                            .then(updatedTicket => {
+                                res.status(200).json(updatedTicket)
+                            });
+                    } else res.status(400).json({ message: "Cannot mark ticket as resolved if it is not assigned to you." })
                 } else res.status(404).json({ message: "Ticket not found." });
             })
             .catch(err => {

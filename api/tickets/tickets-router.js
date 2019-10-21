@@ -16,6 +16,34 @@ router.get('/', (req, res) => {
         });
 });
 
+router.get('/open', (req, res) => {
+    Tickets.findBy({ assigned: 0 })
+        .then(tickets => {
+            tickets.map(ticket => {
+                ticket.assigned === 0 ? ticket.assigned = false : ticket.assigned = true;
+                ticket.resolved === 0 ? ticket.resolved = false : ticket.resolved = true;
+            });
+            res.status(200).json(tickets)
+        })
+        .catch(err => {
+            res.status(400).json(err)
+        });
+});
+
+router.get('/closed', (req, res) => {
+    Tickets.findBy({ resolved: 1 })
+        .then(tickets => {
+            tickets.map(ticket => {
+                ticket.assigned === 0 ? ticket.assigned = false : ticket.assigned = true;
+                ticket.resolved === 0 ? ticket.resolved = false : ticket.resolved = true;
+            });
+            res.status(200).json(tickets)
+        })
+        .catch(err => {
+            res.status(400).json(err)
+        });
+})
+
 router.post('/', (req, res) => {
     const { title, description, tried, category } = req.body;
 
