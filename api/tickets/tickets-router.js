@@ -24,7 +24,10 @@ router.post('/', (req, res) => {
             res.status(400).json({ message: "Missing ticket parameters." });
         } else Tickets.add(req.body)
             .then(ticket => {
-                res.status(201).json(ticket);
+                Tickets.addTicketToStudent(req.user.id, ticket.id)
+                    .then(ticket => {
+                        res.status(201).json(ticket);
+                    })
             })
             .catch(err => {
                 console.log(err);

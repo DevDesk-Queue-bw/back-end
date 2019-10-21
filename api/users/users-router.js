@@ -34,23 +34,25 @@ router.put('/tickets/:id/resolved', (req, res) => {
     const { id } = req.params;
     const { solution } = req.body;
 
-    req.user.role === 'helper' ?
-
-    Users.findAssignedTicketById(id)
-        .then(ticket => {
-            if (ticket.length) {
-                // Sets ticket to resolved along with the included ticket solution
-                Tickets.update(id, { solution, resolved: true })
-                    .then(updatedTicket => {
-                        res.status(200).json(updatedTicket)
-                    });
-            } else res.status(404).json({ message: "Ticket not found." });
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({ message: "Error updating the ticket." })
-        })
-    : res.status(400).json({ message: "Ticket updating restricted to helpers." });
+    if (solution) {
+        req.user.role === 'helper' ?
+    
+        Users.findAssignedTicketById(id)
+            .then(ticket => {
+                if (ticket.length) {
+                    // Sets ticket to resolved along with the included ticket solution
+                    Tickets.update(id, { solution, resolved: true })
+                        .then(updatedTicket => {
+                            res.status(200).json(updatedTicket)
+                        });
+                } else res.status(404).json({ message: "Ticket not found." });
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).json({ message: "Error updating the ticket." })
+            })
+        : res.status(400).json({ message: "Ticket updating restricted to helpers." });
+    } else res.status(400).json({ message: "Resolved tickets should include a solution." });
 });
 
 router.put('/tickets/:id/reassign', (req, res) => {
@@ -76,6 +78,6 @@ router.put('/tickets/:id/reassign', (req, res) => {
             res.status(500).json({ message: "Error updating the ticket." })
         })
     : res.status(400).json({ message: "Ticket updating restricted to helpers." });
-})
+});
 
 module.exports = router;
