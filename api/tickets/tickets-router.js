@@ -156,7 +156,7 @@ router.get('/closed', (req, res) => {
 
 /**
  *
- * @api {post} / Add new ticket
+ * @api {post} /tickets Add new ticket
  * @apiName AddNewTicket
  * @apiGroup Tickets
  * @apiVersion 1.0.0
