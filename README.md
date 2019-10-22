@@ -16,6 +16,7 @@ API for Devdesk Queue
 	- [Assign a ticket](#assign-a-ticket)
 	- [Delete a ticket](#delete-a-ticket)
 	- [Get user&#39;s tickets](#get-user&#39;s-tickets)
+	- [List all users](#list-all-users)
 	- [Reassign a ticket](#reassign-a-ticket)
 	- [Resolve a ticket](#resolve-a-ticket)
 	
@@ -429,6 +430,39 @@ HTTP/1.1 400
   "message": "Ticket assignment restricted to helpers only."
 }
 ```
+Retrieval error
+
+```
+HTTP/1.1 500 Internal Server Error
+```
+## List all users
+
+
+
+	GET /users
+
+
+### Success Response
+
+Success-Response:
+
+```
+HTTP/1.1 200 OK
+{
+   "users": [
+     {
+       "id": 1,
+       "username": "lambdastudent",
+       "role": "student"
+     },
+     {
+      ...
+     }
+   ]
+}
+```
+### Error Response
+
 Retrieval error
 
 ```

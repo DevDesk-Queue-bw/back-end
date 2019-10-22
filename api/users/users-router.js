@@ -78,6 +78,49 @@ router.post('/tickets/:id/assign', (req, res) => {
 
 /**
  *
+ * @api {get} /users List all users
+ * @apiName ListUsers
+ * @apiGroup Users
+ * @apiVersion 1.0.0
+ *
+ * @apiSuccess (200) {Object} users List of all users
+ * @apiSuccess (200) {Number} id User ID
+ * @apiSuccess (200) {String} username User username
+ * @apiSuccess (200) {String} role User role
+ *
+ * @apiSuccessExample {json} Success-Response:
+ *  HTTP/1.1 200 OK
+ *  {
+ *     "users": [
+ *       {
+ *         "id": 1,
+ *         "username": "lambdastudent",
+ *         "role": "student"
+ *       },
+ *       {
+ *        ...
+ *       }
+ *     ]
+ *  }
+ * 
+ * @apiErrorExample {json} Retrieval error
+ *  HTTP/1.1 500 Internal Server Error
+ *
+ */
+
+router.get('/', (req, res) => {
+    Users.find()
+        .then(users => {
+            res.status(200).json({ users })
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ message: "Error retrieving users" })
+        })
+});
+
+/**
+ *
  * @api {get} /users/tickets Get user's tickets
  * @apiName GetUserTickets
  * @apiGroup Users
