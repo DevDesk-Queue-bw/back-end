@@ -45,6 +45,9 @@ Success-Response:
  HTTP/1.1 200 OK
 {
   "message": "Welcome lambdastudent!",
+  "id": 1,
+  "username": "lambdastudent",
+  "role": "student",
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjozLCJ1c2VybmFtZSI6ImplZmYiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTU3MTY5MjU2OCwiZXhwIjoxNTcxNzAzMzY4fQ.szvk7Z1GqU9vPD8Jaj_4fkIXgpWVfmF9GipThZhGKjQ"
 }
 ```

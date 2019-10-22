@@ -45,6 +45,20 @@ define({ "api": [
           },
           {
             "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>User's ID</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>User's username</p>"
+          },
+          {
+            "group": "Success 200",
             "type": "String",
             "optional": false,
             "field": "token",
@@ -55,7 +69,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " HTTP/1.1 200 OK\n{\n  \"message\": \"Welcome lambdastudent!\",\n  \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjozLCJ1c2VybmFtZSI6ImplZmYiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTU3MTY5MjU2OCwiZXhwIjoxNTcxNzAzMzY4fQ.szvk7Z1GqU9vPD8Jaj_4fkIXgpWVfmF9GipThZhGKjQ\"\n}",
+          "content": " HTTP/1.1 200 OK\n{\n  \"message\": \"Welcome lambdastudent!\",\n  \"id\": 1,\n  \"username\": \"lambdastudent\",\n  \"role\": \"student\",\n  \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjozLCJ1c2VybmFtZSI6ImplZmYiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTU3MTY5MjU2OCwiZXhwIjoxNTcxNzAzMzY4fQ.szvk7Z1GqU9vPD8Jaj_4fkIXgpWVfmF9GipThZhGKjQ\"\n}",
           "type": "json"
         }
       ]
@@ -134,7 +148,7 @@ define({ "api": [
       "examples": [
         {
           "title": "{",
-          "content": "{\n  \"username\": \"lambdastudent\",\n  \"password\": \"password\",\n  \"role\": \"student\"\n}",
+          "content": "{\n  \"username\": \"lambdastudent\",\n  \"password\": \"password\",\n  \"role\": \"student\"\n  \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0Ijo2LCJ1c2VybmFtZSI6ImpvbW15MTIzNDUiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTU3MTc2MDgxNiwiZXhwIjoxNTcxNzcxNjE2fQ.a10a8lxnffq8b_T3SnV7500WfZxbeg6obJnEJYMVLnQ\"\n}",
           "type": "json"
         }
       ]
