@@ -201,11 +201,10 @@ router.get('/tickets', (req, res) => {
  *
  * @apiParam {Number} id Ticket ID
  *
- * @apiSuccess (200) {Number} ticket_id Assigned ticket ID
+ * @apiSuccess (200) {Number} id Assigned ticket ID
  * @apiSuccess (200) {String} title Assigned ticket title
  * @apiSuccess (200) {String} description Assigned ticket description
- * @apiSuccess (200) {String} tried Assigned ticket tried
- * @apiSuccess (200) {String} category Assigned ticket category
+ * @apiSuccess (200) {String} solution Assigned ticket solution
  * 
  * @apiParamExample {json} Request-Example:
  *  {
@@ -295,9 +294,10 @@ router.put('/tickets/:id/resolve', (req, res) => {
  *
  * @apiParam {Number} id Ticket ID
  *
- * @apiSuccess (200) {Number} ticket_id Reassigned ticket ID
+ * @apiSuccess (200) {Number} id Reassigned ticket ID
  * @apiSuccess (200) {String} title Reassigned ticket title
  * @apiSuccess (200) {String} description Reassigned ticket description
+ * @apiSuccess (200) {String} solution Reassigned ticket solution (set to null)
  * 
  * @apiSuccessExample {json} Success-Response:
  *  HTTP/1.1 200 OK

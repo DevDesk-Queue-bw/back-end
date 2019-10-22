@@ -1056,7 +1056,7 @@
             "group": "200",
             "type": "Number",
             "optional": false,
-            "field": "ticket_id",
+            "field": "id",
             "description": "<p>Reassigned ticket ID</p>"
           },
           {
@@ -1072,6 +1072,13 @@
             "optional": false,
             "field": "description",
             "description": "<p>Reassigned ticket description</p>"
+          },
+          {
+            "group": "200",
+            "type": "String",
+            "optional": false,
+            "field": "solution",
+            "description": "<p>Reassigned ticket solution (set to null)</p>"
           }
         ]
       },
@@ -1171,7 +1178,7 @@
             "group": "200",
             "type": "Number",
             "optional": false,
-            "field": "ticket_id",
+            "field": "id",
             "description": "<p>Assigned ticket ID</p>"
           },
           {
@@ -1192,15 +1199,8 @@
             "group": "200",
             "type": "String",
             "optional": false,
-            "field": "tried",
-            "description": "<p>Assigned ticket tried</p>"
-          },
-          {
-            "group": "200",
-            "type": "String",
-            "optional": false,
-            "field": "category",
-            "description": "<p>Assigned ticket category</p>"
+            "field": "solution",
+            "description": "<p>Assigned ticket solution</p>"
           }
         ]
       },
