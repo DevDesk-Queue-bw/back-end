@@ -50,7 +50,7 @@ const secrets = require('../config/secrets.js');
  *
  */
 
-router.post('/register', (req, res) => {
+router.post('/register', validateRole, (req, res) => {
     const { username, password, role } = req.body;
     if (username && password && role) {
       let user = req.body;
@@ -59,7 +59,11 @@ router.post('/register', (req, res) => {
     
       Users.add(user)
         .then(saved => {
-          res.status(201).json(saved);
+          res.status(201).json({
+            id: saved.id,
+            username: saved.username,
+            token: generateToken(saved)
+          })
         })
         .catch(error => {
           res.status(500).json({ message: 'cannot add the user', error });
@@ -118,6 +122,8 @@ router.post('/login', (req, res) => {
           const token = generateToken(user);
           res.status(200).json({
             message: `Welcome ${user.username}!`,
+            id: user.id,
+            username: user.username,
             token,
           });
         } else {
@@ -140,6 +146,13 @@ function generateToken(user) {
     };
   
     return jwt.sign(payload, secrets.jwtSecret, options);
-;}
+}
+
+function validateRole(req, res, next) {
+  const { role } = req.body;
+  role === 'helper' || role === 'student' ?
+  next()
+  : res.status(400).json({ message: 'Invalid role being sent.' });
+}
 
 module.exports = router;
