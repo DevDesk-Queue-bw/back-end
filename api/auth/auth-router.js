@@ -20,7 +20,7 @@ const secrets = require('../config/secrets.js');
  * @apiSuccess {String} username User's username
  * @apiSuccess {String} role User's role
  *
- * @apiParamExample {json}
+ * @apiParamExample {json} Request-Example:
  *  {
  *    "username": "lambdastudent",
  *    "password": "password",
@@ -101,7 +101,7 @@ router.post('/register', async (req, res) => {
  * @apiSuccess {String} username User's username
  * @apiSuccess {String} token User's Authorization token
  *
- * @apiParamExample {json}
+ * @apiParamExample {json} Request-Example:
  *  {
  *    "username": "lambdastudent",
  *    "password": "password"

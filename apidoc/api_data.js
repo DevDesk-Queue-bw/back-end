@@ -27,7 +27,7 @@ define({ "api": [
       },
       "examples": [
         {
-          "title": "{",
+          "title": "Request-Example:",
           "content": "{\n  \"username\": \"lambdastudent\",\n  \"password\": \"password\"\n}",
           "type": "json"
         }
@@ -147,7 +147,7 @@ define({ "api": [
       },
       "examples": [
         {
-          "title": "{",
+          "title": "Request-Example:",
           "content": "{\n  \"username\": \"lambdastudent\",\n  \"password\": \"password\",\n  \"role\": \"student\"\n  \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0Ijo2LCJ1c2VybmFtZSI6ImpvbW15MTIzNDUiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTU3MTc2MDgxNiwiZXhwIjoxNTcxNzcxNjE2fQ.a10a8lxnffq8b_T3SnV7500WfZxbeg6obJnEJYMVLnQ\"\n}",
           "type": "json"
         }
