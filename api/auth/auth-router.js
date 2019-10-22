@@ -62,6 +62,7 @@ router.post('/register', validateRole, (req, res) => {
           res.status(201).json({
             id: saved.id,
             username: saved.username,
+            role: saved.role,
             token: generateToken(saved)
           })
         })
@@ -82,6 +83,8 @@ router.post('/register', validateRole, (req, res) => {
  * @apiParam {String} password User password
  *
  * @apiSuccess {String} message Welcome message
+ * @apiSuccess {Number} id User's ID
+ * @apiSuccess {String} username User's username
  * @apiSuccess {String} token User's Authorization token
  *
  * @apiParamExample {json}
@@ -94,6 +97,8 @@ router.post('/register', validateRole, (req, res) => {
  *  HTTP/1.1 200 OK
  * {
  *   "message": "Welcome lambdastudent!",
+ *   "id": 1,
+ *   "username": "lambdastudent",
  *   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjozLCJ1c2VybmFtZSI6ImplZmYiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTU3MTY5MjU2OCwiZXhwIjoxNTcxNzAzMzY4fQ.szvk7Z1GqU9vPD8Jaj_4fkIXgpWVfmF9GipThZhGKjQ"
  * }
  *
@@ -124,6 +129,7 @@ router.post('/login', (req, res) => {
             message: `Welcome ${user.username}!`,
             id: user.id,
             username: user.username,
+            role: user.role,
             token,
           });
         } else {
