@@ -62,9 +62,9 @@ async function findStudentTickets(id) {
 }
 
 async function add(user) {
-  const [id] = await db('users').insert(user);
-
-  return findById(id);
+  return await db('users')
+    .insert(user, 'id')
+    .then(([id]) => findById(id));
 }
 
 function findById(id) {
