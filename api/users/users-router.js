@@ -302,8 +302,8 @@ router.put('/tickets/:id/reassign', (req, res) => {
         .then(ticket => {
             if (ticket) {
                 if (ticket.helper_id === user_id) {
-                    // Sets ticket assignment to false and deletes assigned ticket entry
-                    Tickets.update(id, { assigned: false })
+                    // Sets ticket assignment and resolved status to false and deletes assigned ticket entry
+                    Tickets.update(id, { assigned: false, resolved: false })
                         .then(updatedTicket => {
                             Users.removeAssignedTicket(id)
                                 .then(() => {
