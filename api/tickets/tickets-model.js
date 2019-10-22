@@ -19,9 +19,9 @@ function findBy(filter) {
 }
 
 async function add(ticket) {
-    const [id] = await db('tickets').insert(ticket);
-  
-    return findById(id);
+    return await db('tickets')
+    .insert(ticket, 'id')
+    .then(([id]) => findById(id));
 }
 
 async function addTicketToStudent(student_id, ticket_id) {
