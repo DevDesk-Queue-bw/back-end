@@ -56,7 +56,7 @@ router.post('/tickets/:id/assign', (req, res) => {
     req.user.role === 'helper' ?
     Users.findAssignedTicketById(id)
         .then(ticket => {
-            if (!ticket.length) {
+            if (!ticket) {
                 Users.assignTicket(helper_id, id)
                     .then(tickets => {
                         // Sets ticket assignment to true after assigning to helper

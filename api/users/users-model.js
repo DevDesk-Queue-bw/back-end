@@ -74,9 +74,9 @@ function findById(id) {
     .first();
 }
 
-function findStudentTicketById(id) {
+function findStudentTicketById(ticket_id) {
   return db('student_tickets')
-    .where({ id })
+    .where({ ticket_id })
     .first();
 }
 
