@@ -40,7 +40,8 @@ async function findAssignedTickets(id) {
       't.title',
       't.description',
       't.tried',
-      't.category'
+      't.category',
+      't.solution'
     );
 }
 
@@ -57,7 +58,8 @@ async function findStudentTickets(id) {
       't.title',
       't.description',
       't.tried',
-      't.category'
+      't.category',
+      't.solution'
     );
 }
 
