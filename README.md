@@ -103,6 +103,14 @@ HTTP/1.1 400
   "message": "Missing user parameters"
 }
 ```
+Invalid parameter sent
+
+```
+HTTP/1.1 400
+{
+  "message": "Invalid role being sent"
+}
+```
 Register error
 
 ```

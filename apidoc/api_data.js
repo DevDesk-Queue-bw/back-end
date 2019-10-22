@@ -195,6 +195,12 @@ define({ "api": [
             "optional": false,
             "field": "MissingParameters",
             "description": "<p>Missing required parameters</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "InvalidParameter",
+            "description": "<p>Invalid parameter</p>"
           }
         ]
       },
@@ -202,6 +208,11 @@ define({ "api": [
         {
           "title": "Missing required parameters",
           "content": "HTTP/1.1 400\n{\n  \"message\": \"Missing user parameters\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Invalid parameter sent",
+          "content": "HTTP/1.1 400\n{\n  \"message\": \"Invalid role being sent\"\n}",
           "type": "json"
         },
         {

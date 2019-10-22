@@ -43,6 +43,14 @@ const secrets = require('../config/secrets.js');
  *  {
  *    "message": "Missing user parameters"
  *  }
+ * 
+ * @apiError InvalidParameter Invalid parameter
+ *
+ * @apiErrorExample {json} Invalid parameter sent
+ *  HTTP/1.1 400
+ *  {
+ *    "message": "Invalid role being sent"
+ *  }
  *
  * @apiError MissingParameters Missing required parameters
  *
@@ -51,29 +59,31 @@ const secrets = require('../config/secrets.js');
  *
  */
 
-router.post('/register', validateRole, async (req, res) => {
+router.post('/register', async (req, res) => {
   const { username, password, role } = req.body;
-  try {
-    if (username && password && role) {
-      let user = req.body;
-      const hash = bcrypt.hashSync(user.password, 10);
-      user.password = hash;
-    
-      await Users.add(user)
-        .then(saved => {
-          const token = generateToken(saved);
-          res.status(201).json({
-            id: saved.id,
-            username: saved.username,
-            role: saved.role,
-            token
+  if (role === 'helper' || role === 'student') {
+    try {
+      if (username && password && role) {
+        let user = req.body;
+        const hash = bcrypt.hashSync(user.password, 10);
+        user.password = hash;
+      
+        await Users.add(user)
+          .then(saved => {
+            const token = generateToken(saved);
+            res.status(201).json({
+              id: saved.id,
+              username: saved.username,
+              role: saved.role,
+              token
+            })
           })
-        })
-    } else res.status(400).json({ message: "Missing user parameters" });
-  } catch (error) {
-      console.log(error);
-      res.status(500).json({ message: 'cannot add the user', error });
+      } else res.status(400).json({ message: "Missing user parameters" });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'cannot add the user', error });
     }
+  } else res.status(400).json({ message: "Invalid role being sent" });
 });
 
 /**
@@ -157,13 +167,6 @@ function generateToken(user) {
     };
   
     return jwt.sign(payload, secrets.jwtSecret, options);
-}
-
-function validateRole(req, res, next) {
-  const { role } = req.body;
-  role === 'helper' || role === 'student' ?
-  next()
-  : res.status(400).json({ message: 'Invalid role being sent.' });
 }
 
 module.exports = router;
