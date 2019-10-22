@@ -61,11 +61,12 @@ router.post('/register', validateRole, async (req, res) => {
     
       await Users.add(user)
         .then(saved => {
+          const token = generateToken(saved);
           res.status(201).json({
             id: saved.id,
             username: saved.username,
             role: saved.role,
-            token: generateToken(saved)
+            token
           })
         })
     } else res.status(400).json({ message: "Missing user parameters" });
