@@ -294,6 +294,7 @@ router.put('/tickets/:id/resolved', (req, res) => {
 
 router.put('/tickets/:id/reassign', (req, res) => {
     const { id } = req.params;
+    const user_id = req.user.id;
 
     req.user.role === 'helper' ?
 
