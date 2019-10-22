@@ -25,6 +25,7 @@ const secrets = require('../config/secrets.js');
  *    "username": "lambdastudent",
  *    "password": "password",
  *    "role": "student"
+ *    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0Ijo2LCJ1c2VybmFtZSI6ImpvbW15MTIzNDUiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTU3MTc2MDgxNiwiZXhwIjoxNTcxNzcxNjE2fQ.a10a8lxnffq8b_T3SnV7500WfZxbeg6obJnEJYMVLnQ"
  *  }
  *
  * @apiSuccessExample {json} Success-Response:
@@ -50,14 +51,15 @@ const secrets = require('../config/secrets.js');
  *
  */
 
-router.post('/register', validateRole, (req, res) => {
-    const { username, password, role } = req.body;
+router.post('/register', validateRole, async (req, res) => {
+  const { username, password, role } = req.body;
+  try {
     if (username && password && role) {
       let user = req.body;
       const hash = bcrypt.hashSync(user.password, 10);
       user.password = hash;
     
-      Users.add(user)
+      await Users.add(user)
         .then(saved => {
           res.status(201).json({
             id: saved.id,
@@ -66,10 +68,11 @@ router.post('/register', validateRole, (req, res) => {
             token: generateToken(saved)
           })
         })
-        .catch(error => {
-          res.status(500).json({ message: 'cannot add the user', error });
-        });
     } else res.status(400).json({ message: "Missing user parameters" });
+  } catch (error) {
+      console.log(error);
+      res.status(500).json({ message: 'cannot add the user', error });
+    }
 });
 
 /**
@@ -99,6 +102,7 @@ router.post('/register', validateRole, (req, res) => {
  *   "message": "Welcome lambdastudent!",
  *   "id": 1,
  *   "username": "lambdastudent",
+ *   "role": "student",
  *   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjozLCJ1c2VybmFtZSI6ImplZmYiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTU3MTY5MjU2OCwiZXhwIjoxNTcxNzAzMzY4fQ.szvk7Z1GqU9vPD8Jaj_4fkIXgpWVfmF9GipThZhGKjQ"
  * }
  *
