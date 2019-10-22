@@ -191,7 +191,7 @@ router.get('/tickets', (req, res) => {
  * @apiErrorExample {json} Ticket not found
  *  HTTP/1.1 404
  *  {
- *    "message": "Ticket not found."
+ *    "message": "Ticket not found (invalid assignment)"
  *  }
  * 
  * @apiError InvalidRole Role not valid.
@@ -233,7 +233,7 @@ router.put('/tickets/:id/resolve', (req, res) => {
                                 res.status(200).json(updatedTicket)
                             });
                     } else res.status(400).json({ message: "Cannot mark ticket as resolved if it is not assigned to you." })
-                } else res.status(404).json({ message: "Ticket not found." });
+                } else res.status(404).json({ message: "Ticket not found (invalid assignment)" });
             })
             .catch(err => {
                 console.log(err);
@@ -278,7 +278,7 @@ router.put('/tickets/:id/resolve', (req, res) => {
  * @apiErrorExample {json} Ticket not found
  *  HTTP/1.1 404
  *  {
- *    "message": "Ticket not found."
+ *    "message": "Ticket not found (invalid assignment)"
  *  }
  * 
  * @apiError InvalidRole Role not valid.
@@ -313,7 +313,7 @@ router.put('/tickets/:id/reassign', (req, res) => {
                                 });
                         });
                 } else res.status(400).json({ message: "Cannot reassign ticket if it is not assigned to you." })
-            } else res.status(404).json({ message: "Ticket not found." });
+            } else res.status(404).json({ message: "Ticket not found (invalid assignment)" });
         })
         .catch(err => {
             console.log(err);

@@ -1013,7 +1013,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"id\": 1,\n  \"title\": \"How do I into Node?\",\n  \"description\": \"No seriously I don't get it.\"\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"id\": 1,\n  \"title\": \"How do I into Node?\",\n  \"description\": \"No seriously I don't get it.\",\n  \"solution\": null\n}",
           "type": "json"
         }
       ]
@@ -1049,7 +1049,7 @@
         },
         {
           "title": "Ticket not found",
-          "content": "HTTP/1.1 404\n{\n  \"message\": \"Ticket not found.\"\n}",
+          "content": "HTTP/1.1 404\n{\n  \"message\": \"Ticket not found (invalid assignment)\"\n}",
           "type": "json"
         },
         {
@@ -1142,7 +1142,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"id\": 1,\n  \"title\": \"How do I into Node?\",\n  \"description\": \"No seriously I don't get it.\"\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"id\": 1,\n  \"title\": \"How do I into Node?\",\n  \"description\": \"No seriously I don't get it.\",\n  \"solution\": \"This is a solution\"\n}",
           "type": "json"
         }
       ]
@@ -1184,7 +1184,7 @@
         },
         {
           "title": "Ticket not found",
-          "content": "HTTP/1.1 404\n{\n  \"message\": \"Ticket not found.\"\n}",
+          "content": "HTTP/1.1 404\n{\n  \"message\": \"Ticket not found (invalid assignment)\"\n}",
           "type": "json"
         },
         {

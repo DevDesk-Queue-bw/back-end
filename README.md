@@ -456,7 +456,8 @@ HTTP/1.1 200 OK
 {
   "id": 1,
   "title": "How do I into Node?",
-  "description": "No seriously I don't get it."
+  "description": "No seriously I don't get it.",
+  "solution": null
 }
 ```
 ### Error Response
@@ -474,7 +475,7 @@ Ticket not found
 ```
 HTTP/1.1 404
 {
-  "message": "Ticket not found."
+  "message": "Ticket not found (invalid assignment)"
 }
 ```
 Invalid role
@@ -512,7 +513,8 @@ HTTP/1.1 200 OK
 {
   "id": 1,
   "title": "How do I into Node?",
-  "description": "No seriously I don't get it."
+  "description": "No seriously I don't get it.",
+  "solution": "This is a solution"
 }
 ```
 ### Error Response
@@ -530,7 +532,7 @@ Ticket not found
 ```
 HTTP/1.1 404
 {
-  "message": "Ticket not found."
+  "message": "Ticket not found (invalid assignment)"
 }
 ```
 Invalid role
