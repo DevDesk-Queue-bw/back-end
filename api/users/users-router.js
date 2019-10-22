@@ -174,7 +174,8 @@ router.get('/tickets', (req, res) => {
  *  {
  *    "id": 1,
  *    "title": "How do I into Node?",
- *    "description": "No seriously I don't get it."
+ *    "description": "No seriously I don't get it.",
+ *    "solution": "This is a solution"
  *  }
  * 
  * @apiError InvalidAssignment Invalid assignment,
@@ -214,7 +215,7 @@ router.get('/tickets', (req, res) => {
  *
  */
 
-router.put('/tickets/:id/resolved', (req, res) => {
+router.put('/tickets/:id/resolve', (req, res) => {
     const { id } = req.params;
     const user_id = req.user.id;
     const { solution } = req.body;
@@ -260,7 +261,8 @@ router.put('/tickets/:id/resolved', (req, res) => {
  *  {
  *    "id": 1,
  *    "title": "How do I into Node?",
- *    "description": "No seriously I don't get it."
+ *    "description": "No seriously I don't get it.",
+ *    "solution": null
  *  }
  * 
  * @apiError InvalidAssignment Invalid assignment,
@@ -302,8 +304,8 @@ router.put('/tickets/:id/reassign', (req, res) => {
         .then(ticket => {
             if (ticket) {
                 if (ticket.helper_id === user_id) {
-                    // Sets ticket assignment and resolved status to false and deletes assigned ticket entry
-                    Tickets.update(id, { assigned: false, resolved: false })
+                    // Sets solution to null, ticket assignment and resolved status to false, and deletes assigned ticket entry
+                    Tickets.update(id, { solution: null, assigned: false, resolved: false })
                         .then(updatedTicket => {
                             Users.removeAssignedTicket(id)
                                 .then(() => {
