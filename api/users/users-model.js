@@ -76,8 +76,8 @@ function findById(id) {
     .first();
 }
 
-function findStudentTicketById(ticket_id) {
-  return db('student_tickets')
+async function findStudentTicketById(ticket_id) {
+  return await db('student_tickets')
     .where({ ticket_id })
     .first();
 }
