@@ -437,7 +437,7 @@ router.delete('/tickets/:id', (req, res) => {
         })
         .catch(err => {
             console.log(err);
-            res.status(500).json({ message: "There was an error deleting the ticket." });
+            res.status(500).json({ message: "There was an error deleting the ticket (remove not attempted)." });
         })
     : res.status(400).json({ message: "Deleting tickets is restricted to students." })
 })
