@@ -423,8 +423,10 @@ router.delete('/tickets/:id', (req, res) => {
                 if (ticket.student_id === req.user.id) {
                     Users.removeStudentTicket(id)
                         .then(() => {
-                            Tickets.remove(id);
-                            res.status(200).json({ message: "Ticket deleted successfully." })
+                            Tickets.remove(id)
+                                .then(() => {
+                                    res.status(200).json({ message: "Ticket deleted successfully." });
+                                })
                         })
                         .catch(err => {
                             console.log(err);
