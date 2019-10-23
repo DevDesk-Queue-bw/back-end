@@ -413,6 +413,7 @@ router.put('/tickets/:id/reassign', (req, res) => {
 
 router.delete('/tickets/:id', (req, res) => {
     const { id } = req.params;
+    const user_id = req.user.id;
 
     req.user.role === 'student' ?
 
@@ -420,7 +421,7 @@ router.delete('/tickets/:id', (req, res) => {
         .then(ticket => {
             if (ticket) {
                 // Deletes student ticket entry as well as the ticket entry in database
-                if (ticket.student_id === req.user.id) {
+                if (ticket.student_id === user_id) {
                     Users.removeStudentTicket(id)
                         .then(() => {
                             Tickets.remove(id)
